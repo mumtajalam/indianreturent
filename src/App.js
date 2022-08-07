@@ -1,26 +1,29 @@
 import "./App.css";
+import "./main.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import List from "./components/List/List";
-import Resturent from "./components/Resturent/Resturent";
+import Restaurant from "./components/Resturent/Restaurant";
+import Header from "./components/shared/Header";
+import Footer from "./components/shared/Footer";
+import Registration from "./components/User/Registration";
+import Login from "./components/User/Login";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/homepage" element={<HomePage />} />
-          <Route path="/list" element={<List />} />
-          <Route path="/resturent" element={<Resturent />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/list/:city" element={<List />} />
+          <Route path="/restaurant/:id" element={<Restaurant />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/" element={<HomePage />} />
         </Routes>
-        <div className="App">
-          <div className="container bg-info">
-            <div className="row">
-              <div className="col-12">foodis App</div>
-            </div>
-          </div>
-        </div>
+        <Footer />
       </BrowserRouter>
     </>
   );
