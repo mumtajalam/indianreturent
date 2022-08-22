@@ -35,7 +35,7 @@ const List = () => {
   return (
     <>
       <CardSlider />
-      <h1>RESTAURAN NAME:</h1>
+      <h1>RESTAURANTS:</h1>
       <div className="row gy-5">
         {list &&
           list.map((item) => (

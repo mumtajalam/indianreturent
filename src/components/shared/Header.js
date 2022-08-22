@@ -21,7 +21,7 @@ const Header = () => {
           >
             {/* <img src="assets/img/logo.png" alt=""> */}
             <h1>
-              Foodie<span>.</span>
+              FoodCo_APP<span>.</span>
             </h1>
           </Link>
 
