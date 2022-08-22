@@ -25,7 +25,7 @@ const Registration = () => {
       tempObj.name !== "" &&
       tempObj.password !== ""
     ) {
-      const url = `${process.env.REACT_APP_API_URL}user/adduser`;
+      const url = `${process.env.REACT_APP_API_URL}/user/adduser`;
       const response = await axios.post(url, tempObj);
       if (response.status === 201) {
         setSubmitStatus(true);

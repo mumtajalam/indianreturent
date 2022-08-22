@@ -16,7 +16,7 @@ const Login = () => {
     tempObj.password = inputRef2.current.value;
 
     if (tempObj.username !== "" && tempObj.password !== "") {
-      const url = process.env.REACT_APP_API_URL + "user/login";
+      const url = process.env.REACT_APP_API_URL + "/user/login";
       const response = await axios.post(url, tempObj);
       if (response.status === 200) {
         //setSubmitStatus(true);

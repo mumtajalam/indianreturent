@@ -18,7 +18,7 @@ const List = () => {
 
   const apiCall = async () => {
     //`${process.env.REACT_APP_API_URL}restaurants/${tempData2.city}`;
-    const url = `${process.env.REACT_APP_API_URL}restaurants/${tempData.city}`;
+    const url = `${process.env.REACT_APP_API_URL}/restaurants/${tempData.city}`;
     const responseApi = await axios.get(url);
     console.log(responseApi);
     setList(responseApi.data);
