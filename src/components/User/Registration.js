@@ -25,7 +25,7 @@ const Registration = () => {
       tempObj.name !== "" &&
       tempObj.password !== ""
     ) {
-      const url = "http://localhost:4000/user/adduser";
+      const url = `${process.env.REACT_APP_API_URL}user/adduser`;
       const response = await axios.post(url, tempObj);
       if (response.status === 201) {
         setSubmitStatus(true);
@@ -80,7 +80,7 @@ const Registration = () => {
             <div className="form-group">
               <label for="email">Email :</label>
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 ref={inputRef3}
                 placeholder="Enter your Email"

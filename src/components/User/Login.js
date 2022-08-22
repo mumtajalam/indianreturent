@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const inputRef1 = useRef();
@@ -8,18 +8,20 @@ const Login = () => {
   const errRef = useRef();
 
   const [submitStatus, setSubmitStatus] = useState(false);
+  const navigate = useNavigate();
 
   const loginFn = async () => {
     let tempObj = {};
     tempObj.username = inputRef1.current.value;
-    tempObj.name = inputRef2.current.value;
+    tempObj.password = inputRef2.current.value;
 
     if (tempObj.username !== "" && tempObj.password !== "") {
-      const url = "http://localhost:4000/user/login";
+      const url = process.env.REACT_APP_API_URL + "user/login";
       const response = await axios.post(url, tempObj);
       if (response.status === 200) {
-        setSubmitStatus(true);
+        //setSubmitStatus(true);
         errRef.current.textContent = " ";
+        navigate("/", { state: response });
       } else {
         errRef.current.textContent = "error, please try again...";
       }

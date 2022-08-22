@@ -13,12 +13,12 @@ const Resturent = () => {
     "https://spng.pinpng.com/pngs/s/45-459786_non-veg-icon-circle-hd-png-download.png";
 
   const callApi = async () => {
-    const url = "http://localhost:4000/restaurants/search/" + tempId.id;
+    const url = `${process.env.REACT_APP_API_URL}restaurants/search/${tempId.id}`;
     const response = await axios.get(url);
     setRestData(response.data);
   };
   const callApiMenu = async () => {
-    const url = "http://localhost:4000/menu/" + tempId.id;
+    const url = `${process.env.REACT_APP_API_URL}menu/${tempId.id}`;
     const response = await axios.get(url);
     setMenu(response.data);
   };
