@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const inputRef1 = useRef();
@@ -9,6 +9,7 @@ const Registration = () => {
   const inputRef4 = useRef();
   const inputRef5 = useRef();
   const errRef = useRef();
+  const navigate = useNavigate();
 
   const [submitStatus, setSubmitStatus] = useState(false);
 
@@ -28,8 +29,9 @@ const Registration = () => {
       const url = `${process.env.REACT_APP_API_URL}/user/adduser`;
       const response = await axios.post(url, tempObj);
       if (response.status === 201) {
-        setSubmitStatus(true);
+        //setSubmitStatus(true);
         errRef.current.textContent = " ";
+        navigate("/login", { state: response.data });
       } else {
         errRef.current.textContent = "error, please try again...";
       }

@@ -52,6 +52,7 @@ const List = () => {
               <p className="price">₹310</p>
             </div>
           ))}
+        {list.length === 0 && <h2>No Restaurents in this area.</h2>}
       </div>
     </>
   );

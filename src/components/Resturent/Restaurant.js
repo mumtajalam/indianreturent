@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 const Resturent = () => {
   const [restData, setRestData] = useState({});
   const [menu, setMenu] = useState([]);
+  const [search, setSearch] = useState([]);
   const tempId = useParams();
   console.log("rest id", tempId);
   const vegIcon =
@@ -24,19 +25,38 @@ const Resturent = () => {
     setMenu(response.data);
   };
 
+  const addCartFn = () => {};
+
+  const handlesearch = () => {
+    console.log("searchhit");
+    if (search !== "") {
+      let newmenu = menu.filter((item) => {
+        return item.food_name.toLowerCase().includes(search.toLowerCase());
+      });
+      setMenu(newmenu);
+    } else {
+      callApiMenu();
+    }
+  };
+
   useEffect(() => {
     callApi();
+    // if (search === "") {
+    //   callApiMenu();
+    // }
     callApiMenu();
   }, []);
 
-  useEffect(() => {
-    console.log(restData);
-    console.log(menu);
-  });
+  // useEffect(() => {
+  //   console.log(restData);
+  //   console.log(menu);
+  //   console.log(search);
+  // }, [search]);
+
   return (
     <>
-      <section id="" class="section-bg">
-        <div class="container" data-aos="fade-up">
+      <section id="" className="section-bg">
+        <div className="container" data-aos="fade-up">
           <div className="row">
             <div className="col-6">
               <img
@@ -45,6 +65,7 @@ const Resturent = () => {
                   "https://i.ytimg.com/vi/BEyloCJlpm0/maxresdefault.jpg"
                 }
                 className="img-fluid food-image-large"
+                alt="logo"
               />
             </div>
             <div className="col-6">
@@ -56,6 +77,7 @@ const Resturent = () => {
                       "https://i.ytimg.com/vi/BEyloCJlpm0/maxresdefault.jpg"
                     }
                     className="img-fluid food-image-small"
+                    alt="logo"
                   />
                 </div>
                 <div className="col-6">
@@ -64,7 +86,8 @@ const Resturent = () => {
                       restData.image3 ||
                       "https://i.ytimg.com/vi/BEyloCJlpm0/maxresdefault.jpg"
                     }
-                    className="img-fluid food-image-small"
+                    className="img-fluid food-image-small "
+                    alt="logo"
                   />
                 </div>
                 <div className="col-6 mt-4">
@@ -74,6 +97,7 @@ const Resturent = () => {
                       "https://i.ytimg.com/vi/BEyloCJlpm0/maxresdefault.jpg"
                     }
                     className="img-fluid food-image-small"
+                    alt="logo"
                   />
                 </div>
                 <div className="col-6 mt-4">
@@ -83,6 +107,7 @@ const Resturent = () => {
                       "https://i.ytimg.com/vi/BEyloCJlpm0/maxresdefault.jpg"
                     }
                     className="img-fluid food-image-small"
+                    alt="logo"
                   />
                 </div>
               </div>
@@ -118,31 +143,65 @@ const Resturent = () => {
 
       <section id="" className="section-bg">
         <div className="container" data-aos="fade-up">
-          <table className="table table-responsive table-warning">
-            {menu &&
-              menu.map((temp) => (
-                <tr>
-                  <td>
-                    <img
-                      src={temp.food_type === "veg" ? vegIcon : nonvegIcon}
-                      className="veg-nonveg-icon"
-                    />
-                  </td>
+          <div className="row height d-flex justify-content-center align-items-center">
+            <div className="col-md-8">
+              <div className="search">
+                <i className="fa fa-search"></i>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search your food items"
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                />
+                <button className="btn btn-primary" onClick={handlesearch}>
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr></hr>
+          <table className="table table-responsive">
+            <tbody>
+              {menu &&
+                menu.map((temp) => (
+                  <tr>
+                    <td>
+                      <img
+                        src={temp.food_type === "veg" ? vegIcon : nonvegIcon}
+                        className="veg-nonveg-icon"
+                        alt="logo"
+                      />
+                    </td>
 
-                  <td>
-                    <img
-                      src={
-                        temp.image ||
-                        "https://i.tribune.com.pk/media/images/1590373-biryani-1513939158/1590373-biryani-1513939158.gif"
-                      }
-                      className="menu-image"
-                    />
-                  </td>
-                  <td>{temp.food_name}</td>
-                  <td>&#8377;{temp.price}</td>
-                  <td>{temp.description}</td>
-                </tr>
-              ))}
+                    <td>
+                      <img
+                        src={
+                          temp.image ||
+                          "https://i.tribune.com.pk/media/images/1590373-biryani-1513939158/1590373-biryani-1513939158.gif"
+                        }
+                        className="menu-image"
+                        alt="logo"
+                      />
+                    </td>
+                    <td>
+                      <h5>{temp.food_name}</h5>
+                      <p>{temp.description}</p>
+                      <p>&#8377;{temp.price}</p>
+                    </td>
+
+                    <td>
+                      <button
+                        className="btn btn-sm btn-warning"
+                        onClick={() => addCartFn(temp)}
+                      >
+                        Add to Cart
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
           </table>
         </div>
       </section>
