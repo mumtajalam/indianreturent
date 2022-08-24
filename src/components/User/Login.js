@@ -1,14 +1,19 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { setLoginData } from "./actionLogin";
 
 const Login = () => {
   const inputRef1 = useRef();
   const inputRef2 = useRef();
   const errRef = useRef();
-
   const [submitStatus, setSubmitStatus] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const loginData = useSelector((state) => state.login);
+  console.log("redux store...", loginData);
 
   const loginFn = async () => {
     let tempObj = {};
@@ -16,14 +21,20 @@ const Login = () => {
     tempObj.password = inputRef2.current.value;
 
     if (tempObj.username !== "" && tempObj.password !== "") {
-      const url = process.env.REACT_APP_API_URL + "/user/login";
-      const response = await axios.post(url, tempObj);
-      if (response.status === 200) {
-        //setSubmitStatus(true);
-        errRef.current.textContent = " ";
-        navigate("/", { state: response });
-      } else {
-        errRef.current.textContent = "error, please try again...";
+      try {
+        const url = process.env.REACT_APP_API_URL + "/user/login";
+        const response = await axios.post(url, tempObj);
+
+        if (response.status === 200) {
+          //setSubmitStatus(true);
+          errRef.current.textContent = " ";
+          // set redux for login data
+          dispatch(setLoginData(response.data));
+          navigate("/", { state: response.data });
+        }
+      } catch (err) {
+        console.log("error in login...");
+        errRef.current.textContent = "Error, Plz try again..";
       }
     }
     errRef.current.textContent = "Please fill all the value";
@@ -68,9 +79,9 @@ const Login = () => {
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-12">
-            <button class="btn btn-warning" onClick={loginFn}>
+        <div className="row">
+          <div className="col-12">
+            <button className="btn btn-warning" onClick={loginFn}>
               Login
             </button>
           </div>
