@@ -7,3 +7,16 @@ export const setLoginData = (loginData) => {
     payload: loginData,
   };
 };
+
+export const setLogout = () => {
+  return {
+    type: constants.SET_LOGOUT,
+  };
+};
+
+export const setUrl = (url) => {
+  return {
+    type: constants.SET_URL,
+    payload: url,
+  };
+};

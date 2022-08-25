@@ -30,7 +30,11 @@ const Login = () => {
           errRef.current.textContent = " ";
           // set redux for login data
           dispatch(setLoginData(response.data));
-          navigate("/", { state: response.data });
+          if (loginData.currentUrl) {
+            navigate(loginData.currentUrl);
+          } else {
+            navigate("/", { state: response.data });
+          }
         }
       } catch (err) {
         console.log("error in login...");
@@ -61,6 +65,7 @@ const Login = () => {
                 className="form-control"
                 ref={inputRef1}
                 placeholder="Enter your First Name"
+                value="mumtajalam21"
               />
             </div>
           </div>
@@ -74,6 +79,7 @@ const Login = () => {
                 className="form-control"
                 ref={inputRef2}
                 placeholder="Enter your Name"
+                value="12345"
               />
             </div>
           </div>

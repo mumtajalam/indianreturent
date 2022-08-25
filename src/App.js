@@ -9,6 +9,7 @@ import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
 import Registration from "./components/User/Registration";
 import Login from "./components/User/Login";
+import Cart from "./components/User/Cart";
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/homepage" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
+
           <Route path="/list/:city" element={<List />} />
           <Route path="/restaurant/:id" element={<Restaurant />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
         <Footer />

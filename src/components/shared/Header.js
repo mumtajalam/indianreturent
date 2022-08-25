@@ -1,9 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setLogout } from "../User/actionLogin";
 const Header = () => {
+  const dispatch = useDispatch();
   const loginData = useSelector((state) => state.login);
+  console.log("Header............", loginData.loginDataRedux);
+
+  const logoutFn = () => {
+    console.log(".......logout......");
+    //redux update - loginData
+    dispatch(setLogout());
+  };
   return (
     <>
       <header
@@ -42,24 +50,33 @@ const Header = () => {
                 <a href="#events">Events</a>
               </li>
               <li>
-                <a href="#chefs">Chefs</a>
-              </li>
-              <li>
                 <a href="#gallery">Gallery</a>
               </li>
-
               <li>
                 <a href="#contact">Contact</a>
               </li>
             </ul>
           </nav>
           <span>
-            <Link to="/login" className="btn-book-a-table">
-              Login
-            </Link>
-            <Link to="/registration" className="btn-book-a-table">
-              Register
-            </Link>
+            {loginData.loginDataRedux ? (
+              <>
+                <button onClick={logoutFn} className="btn-book-a-table">
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="btn-book-a-table">
+                  Login
+                </Link>
+                <Link to="/registration" className="btn-book-a-table">
+                  Register
+                </Link>
+                <Link to="/cart" className="btn-book-a-table">
+                  Cart
+                </Link>
+              </>
+            )}
           </span>
           <i className="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
           <i className="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
