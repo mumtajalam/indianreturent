@@ -10,6 +10,9 @@ import Footer from "./components/shared/Footer";
 import Registration from "./components/User/Registration";
 import Login from "./components/User/Login";
 import Cart from "./components/User/Cart";
+import AddRestaurants from "./components/Resturent/AddRestaurants";
+import RestaurantUpdate from "./components/Resturent/RestaurantUpdate";
+import AddFoodMenu from "./components/Resturent/AddFoodMenu";
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
           <Route path="/list/:city" element={<List />} />
           <Route path="/restaurant/:id" element={<Restaurant />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/addrestaurant" element={<AddRestaurants />} />
+          <Route path="/restaurantupdate" element={<RestaurantUpdate />} />
+          <Route path="/addfoodmenu" element={<AddFoodMenu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/" element={<HomePage />} />

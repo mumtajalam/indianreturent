@@ -49,7 +49,6 @@ const List = () => {
               </Link>
               <h4>{item.rest_name}</h4>
               <p>Amerian, Snacks, Biryani</p>
-              <p className="price">₹310</p>
             </div>
           ))}
         {list.length === 0 && <h2>No Restaurents in this area.</h2>}

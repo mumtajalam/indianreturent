@@ -14,16 +14,7 @@ const Header = () => {
   };
   return (
     <>
-      <header
-        id="header"
-        className="header d-flex align-items-center"
-        // style={{
-        //   backgroundImage:
-        //     "url(https://www.kohinoor-joy.com/wp-content/uploads/2020/01/indo-chinese-food.jpg)",
-        //   backgroundSize: "cover",
-        //   height: "20vh",
-        // }}
-      >
+      <header id="header" className="header d-flex align-items-center">
         <div className="container d-flex align-items-center justify-content-between ">
           <Link
             to="/"
@@ -38,22 +29,36 @@ const Header = () => {
           <nav id="navbar" className="navbar">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="">Home</Link>
               </li>
               <li>
-                <a href="#about">About</a>
+                <Link to="">About</Link>
               </li>
               <li>
-                <a href="#menu">Menu</a>
+                <Link to="">Gallery</Link>
+              </li>
+              <li className="dropdown">
+                <a href="#">
+                  <span>Admin</span>{" "}
+                  <i className="bi bi-chevron-down dropdown-indicator"></i>
+                </a>
+                <ul>
+                  <li>
+                    <Link to="/addrestaurant">Add Restaurant</Link>
+                  </li>
+                  <li>
+                    <Link to="/restaurantupdate">Restaurant Update</Link>
+                  </li>
+                  <li>
+                    <Link to="/addfoodmenu">Add Food Menu</Link>
+                  </li>
+                </ul>
               </li>
               <li>
-                <a href="#events">Events</a>
+                <Link to="">Contact</Link>
               </li>
               <li>
-                <a href="#gallery">Gallery</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
+                <Link to="">Profile</Link>
               </li>
             </ul>
           </nav>
@@ -82,48 +87,6 @@ const Header = () => {
           <i className="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         </div>
       </header>
-
-      {/* <ul
-        className="nav justify-content-end"
-        style={{
-          backgroundImage:
-            "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmJC0eSzfzCk9eOvontMlpCXROOBhUge064w&usqp=CAU)",
-          backgroundSize: "cover",
-          height: "30vh",
-          marginBottom: "2px",
-          padding: "2px",
-          border: "2px",
-        }}
-      >
-        <h1 className="nav justify-content-start " style={{ color: "white" }}>
-          FOODCART
-        </h1>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">
-            Active
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
-            Link
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
-            Link
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            className="nav-link disabled"
-            href="#"
-            tabindex="-1"
-            aria-disabled="true"
-          >
-            Disabled
-          </a>
-        </li>
-      </ul> */}
     </>
   );
 };
