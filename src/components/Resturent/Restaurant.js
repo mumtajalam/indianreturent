@@ -1,13 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { AddFoodToCart } from "./actionFood";
 
 const Resturent = () => {
   const [restData, setRestData] = useState({});
   const [menu, setMenu] = useState([]);
   const [search, setSearch] = useState([]);
+  const dispatch = useDispatch();
   const tempId = useParams();
   console.log("rest id", tempId);
+  const loginData = useSelector((state) => state.login);
   const vegIcon =
     "https://banner2.cleanpng.com/20180601/at/kisspng-vegetarian-cuisine-biryani-indian-cuisine-vegetabl-vegetarian-5b11c235a92d48.569689881527890485693.jpg";
   const nonvegIcon =
@@ -25,7 +29,10 @@ const Resturent = () => {
     setMenu(response.data);
   };
 
-  const addCartFn = () => {};
+  const addCartFn = (fooditem) => {
+    console.log("......foood item.......", fooditem);
+    dispatch(AddFoodToCart(fooditem));
+  };
 
   const handlesearch = () => {
     console.log("searchhit");
@@ -124,10 +131,16 @@ const Resturent = () => {
             <h2 className="mt-2">{restData.location}</h2>
 
             <>
-              <button className="btn btn-success mt-2 p-2">Add Review</button>
-              <button className="btn btn-warning bg-opacity-50 mt-2 p-2">
-                Mark Favourite
-              </button>
+              {loginData.loginDataRedux && (
+                <>
+                  <button className="btn btn-success mt-2 p-2">
+                    Add Review
+                  </button>
+                  <button className="btn btn-warning bg-opacity-50 mt-2 p-2">
+                    Mark Favourite
+                  </button>
+                </>
+              )}
             </>
 
             {/* {loginData.loginDataRedux && 
@@ -192,12 +205,16 @@ const Resturent = () => {
                     </td>
 
                     <td>
-                      <button
-                        className="btn btn-sm btn-warning"
-                        onClick={() => addCartFn(temp)}
-                      >
-                        Add to Cart
-                      </button>
+                      {loginData.loginDataRedux && (
+                        <>
+                          <button
+                            className="btn btn-sm btn-warning"
+                            onClick={() => addCartFn(temp)}
+                          >
+                            Add to Cart
+                          </button>
+                        </>
+                      )}
                     </td>
                   </tr>
                 ))}

@@ -8,6 +8,8 @@ const Cart = () => {
   const loginData = useSelector((state) => state.login);
   console.log("Header............", loginData.loginDataRedux);
   const navigate = useNavigate();
+  const cartData = useSelector((state) => state.cart);
+  console.log("Header............", cartData);
 
   useEffect(() => {
     //checking login
@@ -19,12 +21,35 @@ const Cart = () => {
   }, [loginData.loginDataRedux]);
   return (
     <>
+      <section class="align-items-center section-bg">
+        <div class="container">
+          <h4 data-aos="fade-up">Your selected food items</h4>
+        </div>
+      </section>
       <section id="hero" className="hero d-flex align-items-center section-bg">
         <div className="container">
           <div className="row justify-content-between gy-5">
-            <div className="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-              <h2>Restaurants in your pocket</h2>
-            </div>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Sr No</th>
+                  {/* <th>Image</th> */}
+                  <th>Name</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartData.foodCart &&
+                  cartData.foodCart.map((item, index) => (
+                    <tr>
+                      <td>{index + 1}</td>
+                      {/* <td>{item.image}</td> */}
+                      <td>{item.food_name}</td>
+                      <td>{item.price}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

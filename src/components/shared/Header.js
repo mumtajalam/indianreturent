@@ -68,6 +68,9 @@ const Header = () => {
                 <button onClick={logoutFn} className="btn-book-a-table">
                   Logout
                 </button>
+                <Link to="/cart" className="btn-book-a-table">
+                  Cart
+                </Link>
               </>
             ) : (
               <>
@@ -76,9 +79,6 @@ const Header = () => {
                 </Link>
                 <Link to="/registration" className="btn-book-a-table">
                   Register
-                </Link>
-                <Link to="/cart" className="btn-book-a-table">
-                  Cart
                 </Link>
               </>
             )}
