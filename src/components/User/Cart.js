@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -10,6 +11,33 @@ const Cart = () => {
   const navigate = useNavigate();
   const cartData = useSelector((state) => state.cart);
   console.log("Header............", cartData);
+
+  const placeOrderFn = async () => {
+    console.log(".......placing order..........");
+    try {
+      const url = `${process.env.REACT_APP_API_URL}/orders/placeorder`;
+      const tempObj = {
+        // username: loginData.loginDataRedux.username,
+        // rest_id: cartData.restDetails.rest_id,
+        // rest_name: cartData.restDetails.rest_name,
+        // city: cartData.restDetails.city,
+        // amount: 500,
+        // foodItems: cartData.foodCart,
+
+        rest_id: "id001",
+        rest_name: "abcd",
+        city: "delhi",
+        amount: 500,
+      };
+      const response = await axios.post(url, tempObj);
+      if (response.status === 201) {
+        console.log("order placed...");
+        navigate("/order", { state: response.data });
+      }
+    } catch (err) {
+      console.log("order failed, try again..");
+    }
+  };
 
   useEffect(() => {
     //checking login
@@ -50,6 +78,12 @@ const Cart = () => {
                   ))}
               </tbody>
             </table>
+            <br></br>
+            {cartData.foodCart.length > 0 && (
+              <button className="btn btn-warning" onClick={placeOrderFn}>
+                Place Order
+              </button>
+            )}
           </div>
         </div>
       </section>

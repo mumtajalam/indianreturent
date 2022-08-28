@@ -13,6 +13,7 @@ import Cart from "./components/User/Cart";
 import AddRestaurants from "./components/Resturent/AddRestaurants";
 import RestaurantUpdate from "./components/Resturent/RestaurantUpdate";
 import AddFoodMenu from "./components/Resturent/AddFoodMenu";
+import Order from "./components/User/Order";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/addfoodmenu" element={<AddFoodMenu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
         <Footer />
