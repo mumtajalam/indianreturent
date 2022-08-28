@@ -54,7 +54,7 @@ const Cart = () => {
           <h4 data-aos="fade-up">Your selected food items</h4>
         </div>
       </section>
-      <section id="hero" className="hero d-flex align-items-center section-bg">
+      <section id="hero" className="d-flex align-items-center section-bg">
         <div className="container">
           <div className="row justify-content-between gy-5">
             <table className="table">

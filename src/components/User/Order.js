@@ -22,17 +22,16 @@ const Cart = () => {
   }, [loginData.loginDataRedux]);
   return (
     <>
-      <section class="align-items-center section-bg">
-        <div class="container">
+      <section className="align-items-center section-bg">
+        <div className="container">
           <h4 data-aos="fade-up">Your order has been placed successfully.</h4>
         </div>
       </section>
-      <section id="hero" className="hero d-flex align-items-center section-bg">
+      <section id="hero" className=" d-flex align-items-center section-bg">
         <div className="container">
-          <div className="row justify-content-between gy-5">
-            <h4>Order ID - {orderData.orderid}</h4>
-            <h3>Restaurant - {orderData.rest_name}</h3>
-          </div>
+          <h4>Order ID - {orderData.orderid}</h4>
+          <h3>Restaurant - {orderData.rest_name}</h3>
+          <h3>Amount - {orderData.amount}</h3>
         </div>
       </section>
     </>
