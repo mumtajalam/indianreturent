@@ -6,3 +6,10 @@ export const AddFoodToCart = (fooditem) => {
     payload: fooditem,
   };
 };
+
+export const addRestDetails = (restDetails) => {
+  return {
+    type: constants.ADD_REST_DETAILS,
+    payload: restDetails,
+  };
+};

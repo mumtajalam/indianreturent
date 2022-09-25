@@ -24,9 +24,9 @@ const Cart = () => {
         // amount: 500,
         // foodItems: cartData.foodCart,
 
-        rest_id: "id001",
-        rest_name: "abcd",
-        city: "delhi",
+        rest_id: cartData.restDetails.rest_id,
+        rest_name: cartData.restDetails.rest_name,
+        city: cartData.restDetails.city,
         amount: 500,
       };
       const response = await axios.post(url, tempObj);

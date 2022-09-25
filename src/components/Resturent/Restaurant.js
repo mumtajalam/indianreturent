@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { AddFoodToCart } from "./actionFood";
+import { AddFoodToCart, addRestDetails } from "./actionFood";
 
 const Resturent = () => {
   const [restData, setRestData] = useState({});
@@ -17,12 +17,15 @@ const Resturent = () => {
   const nonvegIcon =
     "https://spng.pinpng.com/pngs/s/45-459786_non-veg-icon-circle-hd-png-download.png";
 
+  // api call for resDetails
   const callApi = async () => {
     const url = `${process.env.REACT_APP_API_URL}/restaurants/search/${tempId.id}`;
     console.log(url);
     const response = await axios.get(url);
     setRestData(response.data);
   };
+
+  // api call for restaurants menu items
   const callApiMenu = async () => {
     const url = `${process.env.REACT_APP_API_URL}/menu/${tempId.id}`;
     const response = await axios.get(url);
@@ -31,7 +34,13 @@ const Resturent = () => {
 
   const addCartFn = (fooditem) => {
     console.log("......foood item.......", fooditem);
+    let restDetails = {};
+    restDetails.rest_id = restData.rest_id;
+    restDetails.rest_name = restData.rest_name;
+    restDetails.location = restData.location;
+
     dispatch(AddFoodToCart(fooditem));
+    dispatch(addRestDetails(restDetails));
   };
 
   const handlesearch = () => {
