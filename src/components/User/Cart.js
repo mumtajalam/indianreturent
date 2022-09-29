@@ -66,7 +66,7 @@ const Cart = () => {
                   <th>Price</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-success">
                 {cartData.foodCart &&
                   cartData.foodCart.map((item, index) => (
                     <tr>

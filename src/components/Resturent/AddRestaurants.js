@@ -12,7 +12,7 @@ const AddRestaurants = () => {
 
   const addFn = async () => {
     let tempObj = {};
-    tempObj.rest_id = parseInt(Math.random() * 100000000);
+    tempObj.rest_id = "r" + parseInt(Math.random() * 100000000);
     tempObj.rest_name = inputRef1.current.value;
     tempObj.location = inputRef2.current.value;
     tempObj.category = inputRef3.current.value;

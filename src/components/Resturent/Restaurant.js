@@ -185,10 +185,10 @@ const Resturent = () => {
           </div>
           <hr></hr>
           <table className="table table-responsive">
-            <tbody>
+            <tbody className="bg-info">
               {menu &&
                 menu.map((temp) => (
-                  <tr>
+                  <tr key={temp.rest_id}>
                     <td>
                       <img
                         src={temp.food_type === "veg" ? vegIcon : nonvegIcon}

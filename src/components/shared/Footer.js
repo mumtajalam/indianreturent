@@ -1,6 +1,17 @@
+import { findByLabelText } from "@testing-library/react";
 import React from "react";
 
 const Footer = () => {
+  // const myStyle = {
+  //   backgroundImage:
+  //     "url('https://img.freepik.com/premium-vector/modern-colorful-orange-wide-banner-background-abstract-background-banner-design-web-banner-texture-header-website-vector-abstract-graphic-design-banner-pattern-background-template_181182-17976.jpg?w=1060')",
+  //   height: "100vh",
+  //   marginTop: "25px",
+  //   fontSize: "14px",
+  //   padding: "50px",
+  //   backgroundSize: "cover",
+  //   backgroundRepeat: "no-repeat",
+  // };
   return (
     <footer id="footer" className="footer">
       <div className="container">

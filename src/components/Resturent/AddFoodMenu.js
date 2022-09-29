@@ -7,16 +7,21 @@ const AddFoodMenu = () => {
   const inputRef2 = useRef();
   const inputRef3 = useRef();
   const inputRef4 = useRef();
+  const inputRef5 = useRef();
+  const inputRef6 = useRef();
   const errRef = useRef();
   const [submitStatus, setSubmitStatus] = useState(false);
 
-  const addFn = async () => {
+  const addMenuFood = async (id) => {
     let tempObj = {};
-    tempObj.rest_id = parseInt(Math.random() * 100000000);
-    tempObj.rest_name = inputRef1.current.value;
-    tempObj.location = inputRef2.current.value;
-    tempObj.category = inputRef3.current.value;
+    tempObj.rest_id = id;
+    tempObj.food_id = "f" + parseInt(Math.random() * 100000000);
+    tempObj.food_name = inputRef1.current.value;
+    tempObj.food_type = inputRef2.current.value;
+    tempObj.food_category = inputRef3.current.value;
     tempObj.image = inputRef4.current.value;
+    tempObj.price = inputRef5.current.value;
+    tempObj.description = inputRef6.current.value;
     console.log(tempObj);
 
     if (
@@ -25,7 +30,7 @@ const AddFoodMenu = () => {
       tempObj.category !== ""
     ) {
       try {
-        const url = `${process.env.REACT_APP_API_URL}/restaurants`;
+        const url = `${process.env.REACT_APP_API_URL}/menu`;
         const response = await axios.post(url, tempObj);
         console.log(response);
         if (response.status === 201) {
@@ -103,10 +108,37 @@ const AddFoodMenu = () => {
                   />
                 </div>
               </div>
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Price</label>
+                <div className="col-sm-10">
+                  <input
+                    type="number"
+                    className="form-control"
+                    ref={inputRef5}
+                    placeholder="price"
+                  />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Description</label>
+                <div className="col-sm-10">
+                  <input
+                    type="text"
+                    className="form-control"
+                    ref={inputRef6}
+                    placeholder="description"
+                  />
+                </div>
+              </div>
 
               <div className="form-group row">
                 <div className="col-sm-10">
-                  <button className="btn btn-warning" onClick={addFn}>
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => {
+                      addMenuFood();
+                    }}
+                  >
                     Add Food Menu
                   </button>
                 </div>
