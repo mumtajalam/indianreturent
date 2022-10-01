@@ -39,7 +39,10 @@ const List = () => {
       <div className="row gy-5">
         {list &&
           list.map((item) => (
-            <div className="col-lg-4 menu-item border bg-secondary bg-opacity-10">
+            <div
+              key={item.rest_id}
+              className="col-lg-4 menu-item border bg-secondary bg-opacity-10"
+            >
               <Link to={`/restaurant/${item.rest_id}`} className="glightbox">
                 <img
                   src={item.image}
