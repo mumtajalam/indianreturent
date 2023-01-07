@@ -56,12 +56,12 @@ const Cart = () => {
       </section>
       <section id="hero" className="d-flex align-items-center section-bg">
         <div className="container">
-          <div className="row justify-content-between gy-5">
+          <div className="row d-flex justify-content-between gy-5">
             <table className="table">
               <thead>
                 <tr>
                   <th>Sr No</th>
-                  {/* <th>Image</th> */}
+                  <th>Image</th>
                   <th>Name</th>
                   <th>Price</th>
                 </tr>
@@ -71,7 +71,14 @@ const Cart = () => {
                   cartData.foodCart.map((item, index) => (
                     <tr>
                       <td>{index + 1}</td>
-                      {/* <td>{item.image}</td> */}
+                      <td>
+                        <img
+                          src={item.image}
+                          className="img-fluid food-image-large"
+                          style={{ height: "100px", width: "150px" }}
+                          alt="logo"
+                        />
+                      </td>
                       <td>{item.food_name}</td>
                       <td>{item.price}</td>
                     </tr>

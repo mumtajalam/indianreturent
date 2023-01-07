@@ -27,7 +27,7 @@ const Resturent = () => {
 
   // api call for restaurants menu items
   const callApiMenu = async () => {
-    const url = `${process.env.REACT_APP_API_URL}/menu/${tempId.id}`;
+    const url = `pr/menu/${tempId.id}`;
     const response = await axios.get(url);
     setMenu(response.data);
   };
@@ -55,6 +55,17 @@ const Resturent = () => {
     }
   };
 
+  const callSearch = () => {
+    if (search !== "") {
+      let newmenu = menu.filter((item) => {
+        return item.food_name.toLowerCase().includes(search.toLowerCase());
+      });
+      setMenu(newmenu);
+    } else {
+      callApiMenu();
+    }
+  };
+
   useEffect(() => {
     callApi();
     // if (search === "") {
@@ -63,11 +74,12 @@ const Resturent = () => {
     callApiMenu();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(restData);
-  //   console.log(menu);
-  //   console.log(search);
-  // }, [search]);
+  useEffect(() => {
+    // console.log(restData);
+    // console.log(menu);
+    // console.log(search);
+    callSearch();
+  }, [search]);
 
   return (
     <>
